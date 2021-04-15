@@ -1,0 +1,56 @@
+<form [formGroup]="form" (ngSubmit)="saveCita($event)">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    <div class="row">
+      <mat-form-field class="col-xs-6">
+        <input placeholder="Propietario" formControlName="propietario" matInput type="text">
+      </mat-form-field>
+
+      <mat-form-field class="col-xs-6">
+        <input placeholder="Mascota" formControlName="mascota" matInput type="text">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-xs-6">
+        <input placeholder="Tipo Mascota" formControlName="tipo_mascota" matInput type="text">
+      </mat-form-field>
+
+      <mat-form-field class="col-xs-6">
+        <input placeholder="Peso" formControlName="peso" matInput type="text">
+      </mat-form-field>
+    </div>
+    <div class="row ">
+      <mat-form-field class="col-xs-6">
+        <input placeholder="Sexo" formControlName="sexo" matInput type="text">
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="col-xs-6">
+        <mat-label>Medico</mat-label>
+        <mat-select matInput formControlName="id_medico">
+          <mat-option *ngFor="let m of medicos" [value]="m.iduser">
+            {{m.nombres + ' ' + m.apellidos}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-xs-6">
+        <input matInput placeholder="Fecha" [matDatepicker]="picker" (click)="picker.open()" formControlName="fecha">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="col-xs-12">
+        <textarea matInput formControlName="observaciones" placeholder="Observaciones"></textarea>
+      </mat-form-field>
+    </div>
+
+  </div>
+  <div mat-dialog-actions class="row end-lg">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
+
+  </div>
+
+</form>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth/auth.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-
+    readonly snackBar: MatSnackBar
   ) {
     this.buildForm();
   }
@@ -35,19 +36,25 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login(event: Event) {
-    event.preventDefault();
+  login() {
+    // event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
       this.authService.loginUser(value.usuario, value.password).subscribe(rpta => {
         console.log(rpta);
-        if (rpta) {
+
+        if (rpta.status === "success") {
           this.router.navigate(['/'])
         } else {
-          alert('NO ES VALIDO')
+          this.open(rpta.message, '', { duration: 3000 });
         }
+
       })
     }
+  }
+
+  open(message: string, action = '', config?: MatSnackBarConfig) {
+    return this.snackBar.open(message, action, config);
   }
 
 }

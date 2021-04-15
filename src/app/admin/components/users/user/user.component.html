@@ -1,0 +1,50 @@
+<form [formGroup]="form" (ngSubmit)="saveUsuario($event)">
+
+    <h1 mat-dialog-title>{{title}}</h1>
+    <div mat-dialog-content>
+
+        
+        <div class="row">
+            <div >
+                <mat-form-field class="col-xs-6">
+                    <input placeholder="Nombres" formControlName="nombres" matInput type="text">
+                </mat-form-field>
+                <mat-form-field  class="col-xs-6">
+                    <input placeholder="Apellidos" formControlName="apellidos" matInput type="text">
+                </mat-form-field>
+            </div>
+        </div>
+
+
+        <div class="row">
+                <mat-form-field class="col-xs-6">
+                    <input placeholder="Username" formControlName="username" matInput type="text">
+                </mat-form-field>
+    
+                <mat-form-field class="col-xs-6">
+                    <input placeholder="Password" formControlName="password" matInput type="password">
+
+                </mat-form-field>
+        </div>
+
+
+        <div class="row">
+                <mat-form-field class="col-xs">
+                    <mat-label>Tipo usuario</mat-label>
+                    <mat-select matInput formControlName="tipo_usuario">
+                        <mat-option *ngFor="let tc of tipo_cliente" [value]="tc.id">
+                            {{tc.value}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+        </div>
+
+
+    </div>
+    <div mat-dialog-actions class="row end-lg" >
+        <button mat-button mat-dialog-close>Cerrar</button>
+        <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
+
+    </div>
+
+</form>

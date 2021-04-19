@@ -6,19 +6,31 @@ import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
 
-  // {
-  //   path: '',
-  //   component: LayoutComponent,
-  //   // canActivate: [AdminGuard],
-  //   children: [
-  //     {
-  //       path: '',
-  //       redirectTo: '/admin',
-  //       pathMatch: 'full',
-  //     }
-  //   ]
-  // },
-  { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  {
+    path: '',
+    component: LayoutComponent,
+    // canActivate: [AdminGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: 'products',
+        loadChildren: () => import('./product/product.module').then(m => m.ProductModule)
+      },
+      {
+        path: 'order',
+        loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
+      },
+    ]
+  },
+  // { path: '', redirectTo: 'admin', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)

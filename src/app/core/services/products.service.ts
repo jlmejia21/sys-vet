@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Product } from '../models/producto.model';
+import { Product } from '../models/product.model';
 
 
 @Injectable({
@@ -12,13 +12,13 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   getAllProducts() {
-    return this.http.get<Product[]>(`${environment.url_api}/products`);
+    return this.http.get<any[]>(`${environment.url_api}/products`);
     // .pipe(
     //   catchError(this.handleError),
     // );
   }
-  getProduct(id: string) {
-    return this.http.get(`${environment.url_api}/products/id`)
+  getProduct(id: number) {
+    return this.http.get(`${environment.url_api}/products/${id}`)
     // .pipe(
     //   catchError(this.handleError),
     // );
@@ -43,5 +43,21 @@ export class ProductsService {
     //   catchError(this.handleError),
     // );
   }
+
+  // aws
+  uploadProduct(image: any) {
+    return this.http.post(`${environment.url_api}/aws/upload`, image)
+    // .pipe(
+    //   catchError(this.handleError),
+    // );
+  }
+
+  getImage(id: string) {
+    return this.http.get(`${environment.url_api}/aws/image/${id}`, { responseType: 'arraybuffer' })
+    // .pipe(
+    //   catchError(this.handleError),
+    // );
+  }
+
 
 }

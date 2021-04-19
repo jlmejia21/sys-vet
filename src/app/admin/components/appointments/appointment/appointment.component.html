@@ -2,31 +2,44 @@
   <h1 mat-dialog-title>{{title}}</h1>
   <div mat-dialog-content>
     <div class="row">
-      <mat-form-field class="col-xs-6">
-        <input placeholder="Propietario" formControlName="propietario" matInput type="text">
+      <mat-form-field class="col-xs-6" appearance="outline">
+        <mat-label>Propietario</mat-label>
+        <input formControlName="propietario" matInput type="text">
+        <mat-error ngFormValidationMessage controlName="propietario" label="Propietario"></mat-error>
       </mat-form-field>
 
-      <mat-form-field class="col-xs-6">
-        <input placeholder="Mascota" formControlName="mascota" matInput type="text">
+      <mat-form-field class="col-xs-6" appearance="outline">
+        <mat-label>Mascota</mat-label>
+        <input formControlName="mascota" matInput type="text">
+        <mat-error ngFormValidationMessage controlName="mascota" label="Mascota"></mat-error>
       </mat-form-field>
     </div>
     <div class="row">
-      <mat-form-field class="col-xs-6">
-        <input placeholder="Tipo Mascota" formControlName="tipo_mascota" matInput type="text">
+      <mat-form-field class="col-xs-6" appearance="outline">
+        <mat-label>Tipo Mascota</mat-label>
+        <input formControlName="tipo_mascota" matInput type="text">
+        <mat-error ngFormValidationMessage controlName="tipo_mascota" label="Tipo Mascota"></mat-error>
       </mat-form-field>
 
-      <mat-form-field class="col-xs-6">
-        <input placeholder="Peso" formControlName="peso" matInput type="text">
+      <mat-form-field class="col-xs-6" appearance="outline">
+        <mat-label>Peso</mat-label>
+        <input formControlName="peso" matInput type="text">
+        <mat-error ngFormValidationMessage controlName="peso" label="Peso"></mat-error>
       </mat-form-field>
     </div>
-    <div class="row ">
-      <mat-form-field class="col-xs-6">
-        <input placeholder="Sexo" formControlName="sexo" matInput type="text">
-      </mat-form-field>
+    <div class="row">
+      <label class="col-xs-2"> Sexo: </label>
+      <div class="col-xs-10">
+        <mat-radio-group formControlName="sexo">
+          <mat-radio-button value="1">Macho</mat-radio-button>
+          <mat-radio-button value="2">Hembra</mat-radio-button>
+        </mat-radio-group>
+        <mat-error ngFormValidationMessage controlName="sexo" label="Sexo"></mat-error>
+      </div>
     </div>
 
     <div class="row">
-      <mat-form-field class="col-xs-6">
+      <mat-form-field class="col-xs-6" appearance="outline">
         <mat-label>Medico</mat-label>
         <mat-select matInput formControlName="id_medico">
           <mat-option *ngFor="let m of medicos" [value]="m.iduser">
@@ -34,23 +47,29 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field class="col-xs-6">
-        <input matInput placeholder="Fecha" [matDatepicker]="picker" (click)="picker.open()" formControlName="fecha">
+      <mat-form-field class="col-xs-6" appearance="outline">
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="fecha">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error ngFormValidationMessage controlName="fecha" label="Fecha"></mat-error>
+
       </mat-form-field>
     </div>
     <div class="row">
-      <mat-form-field class="col-xs-12">
-        <textarea matInput formControlName="observaciones" placeholder="Observaciones"></textarea>
+      <mat-form-field class="col-xs-12" appearance="outline">
+        <mat-label>Observaciones</mat-label>
+        <textarea matInput formControlName="observaciones"></textarea>
+        <mat-error ngFormValidationMessage controlName="observaciones" label="Observaciones"></mat-error>
       </mat-form-field>
     </div>
 
   </div>
-  <div mat-dialog-actions class="row end-lg">
-    <button mat-button mat-dialog-close>Cerrar</button>
-    <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
-
+  <div mat-dialog-actions class="row end-xs">
+    <div class="col-xs-5">
+      <button mat-button mat-dialog-close>Cerrar</button>
+      <button [disabled]="form.invalid" mat-raised-button type="submit">Guardar</button>
+    </div>
   </div>
 
 </form>

@@ -1,54 +1,54 @@
 <div class="row">
-    <div class="col-xs-4">
-        <h2>Citas</h2>
-    </div>
+  <div class="col-xs-4 title">
+    <h2>Citas</h2>
+  </div>
 </div>
 <div class="row end-xs">
-    <div class="col-xs-3">
-        <div class="box">
-            <button mat-raised-button (click)="addCita()"><span class="material-icons">
-                    add
-                </span>Agregar</button>
-        </div>
+  <div class="col-xs-3">
+    <div class="box">
+      <button mat-raised-button (click)="addCita()"><span class="material-icons">
+          add
+        </span>Agregar</button>
     </div>
+  </div>
 </div>
 <div class="row">
 
-    <table mat-table [dataSource]="appoinments" class="mat-elevation-z8  users-table">
+  <table mat-table [dataSource]="appoinments" class="mat-elevation-z8  users-table">
 
-        <!--- Note that these columns can be defined in any order.
+    <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="iduser">
-            <th mat-header-cell *matHeaderCellDef> Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.iduser}} </td>
-        </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="iduser">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let element"> {{element.iduser}} </td>
+    </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="username">
-            <th mat-header-cell *matHeaderCellDef> Username </th>
-            <td mat-cell *matCellDef="let element"> {{element.username}} </td>
-        </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="nombres">
-            <th mat-header-cell *matHeaderCellDef> Nombres </th>
-            <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
-        </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="nombres">
+      <th mat-header-cell *matHeaderCellDef> Nombres </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+    </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="apellidos">
-            <th mat-header-cell *matHeaderCellDef> Apellidos </th>
-            <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
-        </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="apellidos">
+      <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+      <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+    </ng-container>
 
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Acciones </th>
-            <td mat-cell *matCellDef="let element">
-                <!-- <a mat-button [routerLink]="['edit',product.id]">Editar</a> -->
-                <!-- <button mat-raised-button color="primary" (click)="editUsuario(element.iduser)">
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <!-- <a mat-button [routerLink]="['edit',product.id]">Editar</a> -->
+        <!-- <button mat-raised-button color="primary" (click)="editUsuario(element.iduser)">
                     <span class="material-icons">
                         create
                     </span>
@@ -59,10 +59,10 @@
                         delete
                     </span>
                     Eliminar</button> -->
-            </td>
-        </ng-container>
+      </td>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>

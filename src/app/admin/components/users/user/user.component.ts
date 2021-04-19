@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UsersService } from '../../../../core/services/users.service';
 import { User } from '../../../../core/models/user.model';
+import { MustMatch } from 'src/app/utils/MustMatch';
 
 @Component({
   selector: 'app-user',
@@ -26,13 +27,14 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipo_cliente = [
-      { id: 1, value: 'Administrador' },
-      { id: 2, value: 'Medico' },
-      { id: 3, value: 'Cliente' }
+      { id: '1', value: 'Administrador' },
+      { id: '2', value: 'Medico' },
+      { id: '3', value: 'Cliente' }
     ]
     if (this.id > 0) {
-      this.usersService.getUser(this.id).subscribe(user => {
+      this.usersService.getUser(this.id).subscribe((user: any) => {
         this.form.patchValue(user);
+        this.form.get('confirmPassword')?.setValue(user.password);
       });
     }
   }
@@ -41,11 +43,16 @@ export class UserComponent implements OnInit {
     this.form = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
+      confirmPassword: [''],
       nombres: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
-      tipo_usuario: [0, [Validators.required]],
+      tipo_usuario: ['', [Validators.required]],
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
     })
   }
+
+  get f() { return this.form.controls; }
 
   saveUsuario(event: Event) {
     event.preventDefault();
@@ -60,7 +67,6 @@ export class UserComponent implements OnInit {
         const user: User = this.form.value;
         user.iduser = this.id;
         this.usersService.updateUser(user).subscribe(updatedUser => {
-          console.log(updatedUser);
           this.dialogRef.close(user);
         })
       }

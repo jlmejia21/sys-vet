@@ -1,1 +1,53 @@
-<p>product works!</p>
+<form [formGroup]="form" (ngSubmit)="saveProducto($event)">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-xs-5">
+        <div class="row">
+
+          <mat-form-field class="col-xs-12" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="nombre" matInput type="text">
+            <mat-error ngFormValidationMessage controlName="nombre" label="Nombre"></mat-error>
+          </mat-form-field>
+
+        </div>
+        <div class="row">
+
+          <mat-form-field class="col-xs-12" appearance="outline">
+            <mat-label>Descripcion</mat-label>
+            <input formControlName="descripcion" matInput type="text">
+            <mat-error ngFormValidationMessage controlName="descripcion" label="Descripcion"></mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row">
+
+          <mat-form-field class="col-xs-12" appearance="outline">
+            <mat-label>Precio</mat-label>
+            <input formControlName="precio" matInput type="text">
+            <mat-error ngFormValidationMessage controlName="precio" label="Precio"></mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div class="col-xs-7 center-xs" *ngIf="id === 0">
+        <input formControlName="imgUrl" type="file" (change)="getFiles($event)" />
+        <img [src]="imageSrc" height="200" *ngIf="imageSrc">
+      </div>
+      <div class="col-xs-7 center-xs" *ngIf="id> 0">
+        <input formControlName="imgUrl" type="hidden" />
+        <img *ngIf="imageSrc" [src]="imageSrc" height="200">
+        <img *ngIf="!imageSrc" src="/assets/img/loading.gif" height="200">
+      </div>
+
+    </div>
+  </div>
+
+
+  <div mat-dialog-actions class="row end-xs">
+    <div class="col-xs-5">
+      <button mat-button mat-dialog-close>Cerrar</button>
+      <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit">Guardar</button>
+    </div>
+  </div>
+</form>

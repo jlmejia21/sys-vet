@@ -22,12 +22,6 @@ export class AuthService {
   ) { }
 
   loginUser(username: string, password: string) {
-    // if (email === password) {
-    //   this.isLoggedIn = true;
-    //   this.token.saveToken('1324654564545612456');
-    //   return observableOf(true);
-    // }
-    // return observableOf(false);
     return this.http.post(`${environment.url_api}/users/login`, { username, password })
       .pipe(
         tap((rpta: any) => {

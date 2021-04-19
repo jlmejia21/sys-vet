@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/core/services/users.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsersService } from '../../../../core/services/users.service';
 import { AppointmentsService } from '../../../../core/services/appointments.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Appointment } from '../../../../core/models/appointment';
+import { Appointment } from '../../../../core/models/appointment.model';
 
 @Component({
   selector: 'app-appointment',

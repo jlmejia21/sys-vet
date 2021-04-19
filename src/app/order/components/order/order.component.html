@@ -1,0 +1,114 @@
+<mat-horizontal-stepper>
+  <mat-step>
+    <ng-template matStepLabel>Sus productos</ng-template>
+    <div *ngIf="(products$ | async) as products">
+      <p *ngIf="products.length === 0">No hay productos</p>
+      <div class="row" *ngFor="let product of products; index as i">
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <div class="box">
+            <ng-container *ngIf="(images$  | async) as images;">
+              <img class="image" [src]="images[i]" alt="">
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <div class="box">
+            {{ product.nombre }}
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <div class="box">
+            Precio: {{ product.precio  | currency }}
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <div class="box">
+            Cantidad: {{ product.cantidad }}
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <div class="box">
+            Subtotal: {{ (product.cantidad * product.precio)  | currency }}
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+
+          <button mat-raised-button color="warn" (click)="deleteProduct(product)">
+            <span class="material-icons">
+              delete
+            </span>
+            Eliminar</button>
+        </div>
+      </div>
+      <hr>
+      <div *ngIf="products.length > 0" class="row">
+        <div class="col-xs-12 col-sm-8 col-md-8">
+        </div>
+        <div class="col-xs-12 col-sm-2 col-md-2">
+          <div class="box">
+            Total: {{ (total$ | async)  | currency }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row end-xs">
+      <div class="col-xs-4">
+        <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+      </div>
+    </div>
+
+
+  </mat-step>
+  <mat-step>
+    <form [formGroup]="datosGeneralesFormGroup">
+
+      <ng-template matStepLabel>Datos personales</ng-template>
+
+      <div class="row">
+        <mat-form-field class="col-xs-6" appearance="outline">
+          <mat-label>Nombres</mat-label>
+          <input matInput formControlName="nombres">
+          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+        </mat-form-field>
+        <mat-form-field class="col-xs-6" appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="apellidos">
+          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+        </mat-form-field>
+
+      </div>
+      <div class="row">
+        <mat-form-field class="col-xs-6" appearance="outline">
+          <mat-label>Direccion de correo electronico</mat-label>
+          <input matInput formControlName="correo">
+          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+        </mat-form-field>
+        <mat-form-field class="col-xs-6" appearance="outline">
+          <mat-label>DNI/CE</mat-label>
+          <input matInput formControlName="dni">
+          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+        </mat-form-field>
+
+      </div>
+
+      <div class="row end-xs">
+        <div class="col-xs-5">
+          <button mat-button matStepperPrevious>Anterior</button>
+          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Pago</ng-template>
+    <h1>contenifo</h1>
+
+    <div class="row end-xs">
+      <div class="col-xs-5">
+        <button mat-button matStepperPrevious>Anterior</button>
+      </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

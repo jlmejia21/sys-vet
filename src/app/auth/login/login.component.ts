@@ -41,10 +41,8 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       const value = this.form.value;
       this.authService.loginUser(value.usuario, value.password).subscribe(rpta => {
-        console.log(rpta);
-
         if (rpta.status === "success") {
-          this.router.navigate(['/'])
+          this.router.navigate(['/admin'])
         } else {
           this.open(rpta.message, '', { duration: 3000 });
         }

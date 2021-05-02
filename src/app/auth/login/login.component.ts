@@ -11,8 +11,6 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
 
-  error: string;
-
   form: FormGroup;
 
   constructor(
@@ -23,7 +21,6 @@ export class LoginComponent implements OnInit {
   ) {
     this.buildForm();
   }
-
 
   ngOnInit(): void {
   }
@@ -46,7 +43,6 @@ export class LoginComponent implements OnInit {
         } else {
           this.open(rpta.message, '', { duration: 3000 });
         }
-
       })
     }
   }

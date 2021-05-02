@@ -40,8 +40,8 @@ export class ProductsComponent implements OnInit {
 
   addProduct() {
     const dialogRef = this.dialog.open(ProductComponent, {
-      height: '47%',
-      width: '30%',
+      // height: '60%',
+      // width: '42%',
       disableClose: true,
     });
     dialogRef.componentInstance.title = 'Nuevo Producto';

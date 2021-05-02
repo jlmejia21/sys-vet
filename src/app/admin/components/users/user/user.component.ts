@@ -63,6 +63,10 @@ export class UserComponent implements OnInit {
           this.dialogRef.close(user);
         })
 
+        this.usersService.createUserLambda(user).subscribe(newUserL => {
+          console.log(newUserL);
+        })
+
       } else {
         const user: User = this.form.value;
         user.iduser = this.id;

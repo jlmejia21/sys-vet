@@ -36,6 +36,14 @@ export class UsersService {
     // );
   }
 
+  createUserLambda(user: any) {
+    return this.http.post('https://2xwl72okqk.execute-api.us-east-1.amazonaws.com/prod/users', user)
+    // .pipe(
+    //   catchError(this.handleError),
+    // );
+  }
+
+
   updateUser(user: User) {
     return this.http.put(`${environment.url_api}/users`, user)
     // .pipe(

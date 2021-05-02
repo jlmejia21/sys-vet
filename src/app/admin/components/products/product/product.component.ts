@@ -49,6 +49,7 @@ export class ProductComponent implements OnInit {
     const reader = new FileReader();
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
+      console.log(file);
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.imageSrc = reader.result as string;

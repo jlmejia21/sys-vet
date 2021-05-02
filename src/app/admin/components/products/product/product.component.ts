@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit {
       this.productsService.getProduct(this.id).subscribe((product: any) => {
         console.log(product);
         this.form.patchValue(product);
-        this.imageSrc = this.domSanitizer.bypassSecurityTrustUrl('http://localhost:3000/aws/image/' + product.imgUrl)
+        this.imageSrc = this.domSanitizer.bypassSecurityTrustUrl(this.productsService.awsImage + product.imgUrl)
       });
     }
   }

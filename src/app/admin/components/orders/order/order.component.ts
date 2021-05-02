@@ -55,7 +55,7 @@ export class OrderComponent implements OnInit {
   }
   getImage(imageUrl: string) {
     console.log(imageUrl);
-    return this.domSanitizer.bypassSecurityTrustUrl('http://localhost:3000/aws/image/' + imageUrl);
+    return this.domSanitizer.bypassSecurityTrustUrl(this.productsService.awsImage + imageUrl);
   }
 
   private _filterClientes(value: string) {

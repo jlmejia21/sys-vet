@@ -9,6 +9,8 @@ import { Product } from '../models/product.model';
 })
 export class ProductsService {
 
+  awsImage: string = `${environment.url_api}/aws/image/`;
+
   constructor(private http: HttpClient) { }
 
   getAllProducts() {

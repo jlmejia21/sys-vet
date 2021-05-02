@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
   }
 
   getImage(imageUrl: string) {
-    this.image = this.domSanitizer.bypassSecurityTrustUrl('http://localhost:3000/aws/image/' + imageUrl);
+    this.image = this.domSanitizer.bypassSecurityTrustUrl(this.productsService.awsImage + imageUrl);
   }
 
   getImageFromApi(imageUrl: string) {

@@ -44,9 +44,6 @@ export class CartService {
     this.cart.next(this.products);
     this.cartImages.next(this.images);
     this.cartTotal.next(this.total);
-    // localStorage.setItem('cart', JSON.stringify(this.products));
-    // localStorage.setItem('cartImages', JSON.stringify(this.images));
-    // localStorage.setItem('cartTotal', JSON.stringify(this.total));
 
   }
 
@@ -61,8 +58,11 @@ export class CartService {
     this.cart.next(this.products);
     this.cartImages.next(this.images);
     this.cartTotal.next(this.total);
-    localStorage.setItem('cart', JSON.stringify(this.products));
-    localStorage.setItem('cartImages', JSON.stringify(this.images));
-    localStorage.setItem('cartTotal', JSON.stringify(this.total));
+  }
+
+  cleanCart() {
+    this.cart.next([]);
+    this.cartImages.next([]);
+    this.cartTotal.next(0);
   }
 }

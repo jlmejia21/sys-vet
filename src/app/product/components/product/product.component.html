@@ -1,7 +1,7 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>{{ product.nombre | uppercase }}</mat-card-title>
-    <mat-card-subtitle>{{ product.precio | currency }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ product.precio | currency: 'S/. ' }}</mat-card-subtitle>
   </mat-card-header>
   <div class="crop-image">
     <img *ngIf="image" alt="" [attr.src]="image">

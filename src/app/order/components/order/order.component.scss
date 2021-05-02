@@ -1,3 +1,15 @@
 .image {
   max-width: 100%;
 }
+
+
+::ng-deep .wrong-snackbar {
+  color: white;
+  background: #F44336 !important;
+}
+
+
+::ng-deep .success-snackbar {
+  color: white;
+  background: green !important;
+}

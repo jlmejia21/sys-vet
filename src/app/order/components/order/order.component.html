@@ -18,7 +18,7 @@
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2">
           <div class="box">
-            Precio: {{ product.precio  | currency }}
+            Precio: {{ product.precio  | currency: 'S/. ' }}
           </div>
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2">
@@ -28,7 +28,7 @@
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2">
           <div class="box">
-            Subtotal: {{ (product.cantidad * product.precio)  | currency }}
+            Subtotal: {{ (product.cantidad * product.precio)  | currency: 'S/. ' }}
           </div>
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2">
@@ -46,7 +46,7 @@
         </div>
         <div class="col-xs-12 col-sm-2 col-md-2">
           <div class="box">
-            Total: {{ (total$ | async)  | currency }}
+            Total: {{ (total$ | async)  | currency: 'S/. ' }}
           </div>
         </div>
       </div>
@@ -62,53 +62,41 @@
 
   </mat-step>
   <mat-step>
-    <form [formGroup]="datosGeneralesFormGroup">
-
+    <form [formGroup]="datosGeneralesFormGroup" (ngSubmit)="saveDatosGenerales($event)">
       <ng-template matStepLabel>Datos personales</ng-template>
-
       <div class="row">
         <mat-form-field class="col-xs-6" appearance="outline">
           <mat-label>Nombres</mat-label>
           <input matInput formControlName="nombres">
-          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+          <mat-error ngFormValidationMessage controlName="nombres" label="Nombres"></mat-error>
+
         </mat-form-field>
         <mat-form-field class="col-xs-6" appearance="outline">
           <mat-label>Apellidos</mat-label>
           <input matInput formControlName="apellidos">
-          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+          <mat-error ngFormValidationMessage controlName="apellidos" label="Apellidos"></mat-error>
         </mat-form-field>
-
       </div>
       <div class="row">
         <mat-form-field class="col-xs-6" appearance="outline">
           <mat-label>Direccion de correo electronico</mat-label>
-          <input matInput formControlName="correo">
-          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+          <input matInput formControlName="correo" type="email">
+          <mat-error ngFormValidationMessage controlName="correo" label="Correo"></mat-error>
+
         </mat-form-field>
         <mat-form-field class="col-xs-6" appearance="outline">
           <mat-label>DNI/CE</mat-label>
           <input matInput formControlName="dni">
-          <!-- <mat-error ngFormValidationMessage controlName="NRO_ORDTR" label="Nro. OT."></mat-error> -->
+          <mat-error ngFormValidationMessage controlName="dni" label="DNI/CE"></mat-error>
         </mat-form-field>
-
       </div>
-
       <div class="row end-xs">
         <div class="col-xs-5">
           <button mat-button matStepperPrevious>Anterior</button>
-          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+          <button mat-raised-button color="primary" type="submit">Registrar</button>
         </div>
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Pago</ng-template>
-    <h1>contenifo</h1>
 
-    <div class="row end-xs">
-      <div class="col-xs-5">
-        <button mat-button matStepperPrevious>Anterior</button>
-      </div>
-    </div>
-  </mat-step>
 </mat-horizontal-stepper>

@@ -15,4 +15,19 @@ export class OrdersService {
     //   catchError(this.handleError),
     // );
   }
+
+  createOrder(persona: any, productos: any, total: number) {
+    return this.http.post(`${environment.url_api}/orders`, { persona, productos, total })
+    // .pipe(
+    //   catchError(this.handleError),
+    // );
+  }
+
+  sendEmail(idOrder: number, toEmail: string, productos: any[]) {
+    return this.http.post(`${environment.url_api}/aws/email`, { idOrder, toEmail, productos })
+    // .pipe(
+    //   catchError(this.handleError),
+    // );
+  }
+
 }
